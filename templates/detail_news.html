@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block title %}| {{ news.name }}{% endblock title %}
+
+{% block content %}
+    <div class="text-center mb-3">
+        <img src="{{ news.image.url }}" class="w-75" alt="">
+    </div>
+    <h1 class="mb-4">{{ news.name|capital:'12' }}</h1>
+    <p class="text-end">{{ news.category.name }} | {{ news.date|date:'d-m-Y / H:i' }}</p>
+    <p>
+
+        {% for tag in news.tags.all %}
+            <span>{{ tag.name }} /</span>
+        {% endfor %}
+
+    </p>
+    <p>{{ news.description }}</p>
+    <p>{{ news.content|safe }}</p>
+    <div class="text-center mb-3">
+        {% if news.info.image %}
+            <img src="{{ news.info.image.url }}" class="w-75" alt="">
+        {% endif %}
+    </div>
+    <p class="text-end">Source: {{ news.info.source }}</p>
+    <p class="text-end">Link: <a href="{{ news.info.link }}">click here</a></p>
+{% endblock content %}

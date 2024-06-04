@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}| Create News{% endblock title %}
+
+{% block content %}
+    <form method="post" action="{% url 'create_news' %}" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="" class="mb-2">{{ form.name.label }}</label>
+            {{ form.name }}
+            {% if form.name.errors %}
+                {% for error in form.name.errors %}
+                    <div class="text-danger mb-1">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label for="" class="mb-2">{{ form.image.label }}</label>
+            {{ form.image }}
+            {% if form.image.errors %}
+                {% for error in form.image.errors %}
+                    <div class="text-danger mb-1">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label for="" class="mb-2">{{ form.description.label }}</label>
+            {{ form.description }}
+            {% if form.description.errors %}
+                {% for error in form.description.errors %}
+                    <div class="text-danger mb-1">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label for="" class="mb-2">{{ form.content.label }}</label>
+            {{ form.content }}
+            {% if form.content.errors %}
+                {% for error in form.content.errors %}
+                    <div class="text-danger mb-1">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label for="" class="mb-2">{{ form.category.label }}</label>
+            {{ form.category }}
+            {% if form.category.errors %}
+                {% for error in form.category.errors %}
+                    <div class="text-danger mb-1">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="mb-2">{{ form.tags.label }}</label>
+            {{ form.tags }}
+            {% if form.tags.errors %}
+                {% for error in form.tags.errors %}
+                    <div class="text-danger mb-1">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <button class="btn btn-success w-100" type="submit">Сохранить</button>
+    </form>
+{% endblock content %}
